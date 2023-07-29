@@ -4,6 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 
 public class MainPage extends BasePage {
 
@@ -16,6 +18,12 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//form//input[@name='submitNewsletter'][1]")
     private WebElement subscribeButton;
 
+    @FindBy(xpath = "//span[@class='expand-more']")
+    private WebElement languageButton;
+
+    @FindBy(xpath = "//ul[@class='dropdown-menu hidden-sm-down']/li/a[@class='dropdown-item']")
+    private List<WebElement> listOfLanguages;
+
     public MainPage() {
         PageFactory.initElements(getDriver(), this);
     }
@@ -24,12 +32,27 @@ public class MainPage extends BasePage {
         return textNearEmailField.getText();
     }
 
-    public String getTextUnderEmailField(){
+    public String getTextUnderEmailField() {
         return textUnderEmailField.getText();
     }
 
-    public String getTextOfSubscribeButton(){
+    public String getTextOfSubscribeButton() {
         return subscribeButton.getDomProperty("value");
+    }
+
+    public MainPage clickOnLanguageButton() {
+        languageButton.click();
+        return this;
+    }
+
+    public int getQuantityOfLanguages() {
+        return listOfLanguages.size();
+    }
+
+    public boolean checkUkrainianLanguagePresence() {
+        return listOfLanguages.stream().anyMatch(
+                webElement -> webElement.getText().equals("Українська")
+        );
     }
 
 }
