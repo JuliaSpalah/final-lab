@@ -24,6 +24,12 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//ul[@class='dropdown-menu hidden-sm-down']/li/a[@class='dropdown-item']")
     private List<WebElement> listOfLanguages;
 
+    @FindBy(xpath = "//a/span[@class='hidden-sm-down']")
+    private WebElement signInButton;
+
+    @FindBy(xpath = "//a[@class='account']/span[@class='hidden-sm-down']")
+    private WebElement nameNearCart;
+
     public MainPage() {
         PageFactory.initElements(getDriver(), this);
     }
@@ -53,6 +59,15 @@ public class MainPage extends BasePage {
         return listOfLanguages.stream().anyMatch(
                 webElement -> webElement.getText().equals("Українська")
         );
+    }
+
+    public SignInPage clickOnSignInButton(){
+        signInButton.click();
+        return new SignInPage();
+    }
+
+    public String getUserNameNearCart(){
+       return nameNearCart.getText();
     }
 
 }

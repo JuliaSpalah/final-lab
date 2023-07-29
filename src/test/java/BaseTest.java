@@ -15,7 +15,7 @@ public class BaseTest {
         int height = Integer.parseInt(System.getProperty("browser.height"));
         String browser = System.getProperty("browser.type");
         WebDriver driver = BrowserFactory.getBrowserInstance(BrowserTypes.valueOf(browser));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get("https://demo.prestashop.com/");
         driver.manage().window().setSize(new Dimension(width, height));
         BasePage.setDriver(driver);

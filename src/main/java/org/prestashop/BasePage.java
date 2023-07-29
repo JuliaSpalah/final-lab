@@ -24,11 +24,12 @@ public class BasePage {
         getDriver().switchTo().frame(getDriver().findElement(By.id("framelive")));
     }
 
-    public void waitSeconds(long seconds) {
+    public BasePage waitSeconds(long seconds) {
         try {
             TimeUnit.SECONDS.sleep(seconds);
         } catch (InterruptedException e) {
             System.out.println("Can`t wait for " + seconds + " seconds");
         }
+        return this;
     }
 }
