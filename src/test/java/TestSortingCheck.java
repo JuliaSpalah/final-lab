@@ -48,5 +48,33 @@ public class TestSortingCheck extends BaseTest {
         sortedProductNamesZtoA.sort(String::compareToIgnoreCase);
         Collections.reverse(sortedProductNamesZtoA);
         assertEquals(actualOrderByNameZtoA, sortedProductNamesZtoA, "Product names are in incorrect order");
+
+        List<Double> actualOrderPriceLowToHigh = allProductsPage
+                .clickOnButtonPrevious()
+                .waitSeconds(1)
+                .clickOnSortByDropdown()
+                .selectPriceLowToHigh()
+                .waitSeconds(1)
+                .getProductPrices();
+        actualOrderPriceLowToHigh.addAll(allProductsPage
+                .clickOnButtonNext()
+                .waitSeconds(1)
+                .getProductPrices());
+
+        List<Double> sortedPricesLowToHigh = new ArrayList<>(actualOrderPriceLowToHigh);
+        sortedPricesLowToHigh.sort(Double::compare);
+        assertEquals(actualOrderPriceLowToHigh, sortedPricesLowToHigh, "The order is not low to high");
+
+        List<Double> actualOrderPriceHighToLow = allProductsPage
+                .clickOnButtonPrevious()
+                .waitSeconds(1)
+                .clickOnSortByDropdown()
+                .selectPriceHighToLow()
+                .waitSeconds(1)
+                .getProductPrices();
+        List<Double> sortedPricesHighToLow = new ArrayList<>(actualOrderPriceHighToLow);
+        sortedPricesHighToLow.sort(Double::compare);
+        Collections.reverse(sortedPricesHighToLow);
+        assertEquals(actualOrderPriceHighToLow, sortedPricesHighToLow, "The order is not high to low");
     }
 }

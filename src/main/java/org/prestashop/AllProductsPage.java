@@ -4,6 +4,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.StringUtils;
 import utils.Utils;
 
 import java.util.List;
@@ -28,6 +29,15 @@ public class AllProductsPage extends BasePage {
 
     @FindBy(xpath = "//div[@class='dropdown-menu']//a[@class='select-list js-search-link'][3]")
     private WebElement nameZtoA;
+
+    @FindBy(xpath = "//div[@class='dropdown-menu']//a[@class='select-list js-search-link'][4]")
+    private WebElement priceLowToHigh;
+
+    @FindBy(xpath = "//div[@class='product-price-and-shipping']/span[1]")
+    private List<WebElement> productPrices;
+
+    @FindBy(xpath = "//div[@class='dropdown-menu']//a[@class='select-list js-search-link'][5]")
+    private WebElement priceHighToLow;
 
 
     public AllProductsPage() {
@@ -62,7 +72,7 @@ public class AllProductsPage extends BasePage {
         return this;
     }
 
-    public AllProductsPage clickOnButtonPrevious(){
+    public AllProductsPage clickOnButtonPrevious() {
         JavascriptExecutor executor = (JavascriptExecutor) getDriver();
         executor.executeScript("arguments[0].click()", buttonPrevious);
         return this;
@@ -70,6 +80,23 @@ public class AllProductsPage extends BasePage {
 
     public AllProductsPage selectNameOrderZtoA() {
         nameZtoA.click();
+        return this;
+    }
+
+    public AllProductsPage selectPriceLowToHigh() {
+        priceLowToHigh.click();
+        return this;
+    }
+
+    public List<Double> getProductPrices() {
+        return productPrices.stream()
+                .map(WebElement::getText)
+                .map(StringUtils::extractPriceValue)
+                .collect(Collectors.toList());
+    }
+
+    public AllProductsPage selectPriceHighToLow() {
+        priceHighToLow.click();
         return this;
     }
 
