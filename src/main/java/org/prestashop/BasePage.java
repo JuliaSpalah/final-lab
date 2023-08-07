@@ -3,8 +3,6 @@ package org.prestashop;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import java.util.concurrent.TimeUnit;
-
 public class BasePage {
     private static final ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
 
@@ -22,14 +20,5 @@ public class BasePage {
 
     public void switchToDemoShopIFrame() {
         getDriver().switchTo().frame(getDriver().findElement(By.id("framelive")));
-    }
-
-    public BasePage waitSeconds(long seconds) {
-        try {
-            TimeUnit.SECONDS.sleep(seconds);
-        } catch (InterruptedException e) {
-            System.out.println("Can`t wait for " + seconds + " seconds");
-        }
-        return this;
     }
 }

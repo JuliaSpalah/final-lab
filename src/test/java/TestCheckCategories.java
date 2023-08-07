@@ -5,12 +5,14 @@ import static org.testng.Assert.*;
 
 public class TestCheckCategories extends BaseTest {
     @Test
-    public void checkCategories() {
+    public void testCheckCategories() {
         MainPage mainPage = new MainPage();
         mainPage.switchToDemoShopIFrame();
 
-        mainPage.hoverOverClothes().waitSeconds(1);
-        boolean isClothesSubmenuShown = mainPage.isClothesSubmenuShown();
+        boolean isClothesSubmenuShown = mainPage
+                .hoverOverClothes()
+                .waitSeconds(1)
+                .isClothesSubmenuShown();
         assertTrue(isClothesSubmenuShown, "Clothes submenu is not shown");
 
         String actualSubmenuMen = mainPage.getSubmenuMen();
@@ -19,8 +21,10 @@ public class TestCheckCategories extends BaseTest {
         String actualSubmenuWomen = mainPage.getSubmenuWomen();
         assertEquals(actualSubmenuWomen, "WOMEN", "Submenu Women is incorrect");
 
-        mainPage.hoverOverAccessories().waitSeconds(1);
-        boolean isAccessoriesSubmenuSubmenuShown = mainPage.isAccessoriesSubmenuShown();
+        boolean isAccessoriesSubmenuSubmenuShown = mainPage
+                .hoverOverAccessories()
+                .waitSeconds(1)
+                .isAccessoriesSubmenuShown();
         assertTrue(isAccessoriesSubmenuSubmenuShown, "Accessories submenu is not shown");
 
         String actualSubmenuStationery = mainPage.getSubmenuStationery();

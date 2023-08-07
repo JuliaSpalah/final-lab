@@ -3,6 +3,7 @@ package org.prestashop;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.Utils;
 
 public class CreateAnAccountPage extends BasePage {
 
@@ -39,6 +40,11 @@ public class CreateAnAccountPage extends BasePage {
 
     public CreateAnAccountPage() {
         PageFactory.initElements(getDriver(), this);
+    }
+
+    public CreateAnAccountPage waitSeconds(long seconds) {
+        Utils.waitSeconds(seconds);
+        return this;
     }
 
     public CreateAnAccountPage clickOnCheckBoxMr() {

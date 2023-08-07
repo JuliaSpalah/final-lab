@@ -1,9 +1,12 @@
 package org.prestashop;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.StringUtils;
+import utils.Utils;
 
 import java.util.List;
 
@@ -61,8 +64,29 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//li[@id='category-9']/div[@class='popover sub-menu js-sub-menu collapse']")
     private WebElement artsSubmenu;
 
+    @FindBy(xpath = "//div[@class='products row']//article[@class='product-miniature js-product-miniature']")
+    private List<WebElement> productsInPopularProducts;
+
+    @FindBy(xpath = "//div[@class='products row']//h3[@class='h3 product-title']")
+    private List<WebElement> productNamesInPopularProducts;
+
+    @FindBy(xpath = "//div[@class='products row']//span[@class='price']")
+    private List<WebElement> productPricesInPopularProducts;
+
+    @FindBy(xpath = "//a[@id='link-product-page-prices-drop-1']")
+    private WebElement pricesDrop;
+
+    @FindBy(xpath = "//section[@class='featured-products clearfix']//a[@class='all-product-link float-xs-left float-md-right h4']")
+    private WebElement allProducts;
+
+
     public MainPage() {
         PageFactory.initElements(getDriver(), this);
+    }
+
+    public MainPage waitSeconds(long seconds) {
+        Utils.waitSeconds(seconds);
+        return this;
     }
 
     public String getTextNearEmailField() {
@@ -146,4 +170,35 @@ public class MainPage extends BasePage {
     public boolean isArtsSubmenuShown() {
         return artsSubmenu.getCssValue("visibility").equals("visible");
     }
+
+    public int getQuantityInPopularProducts() {
+        return productsInPopularProducts.size();
+    }
+
+    public int getQuantityOfProductNamesInPopularProducts() {
+        return productNamesInPopularProducts.size();
+    }
+
+    public int getPricesQuantityInPopularProducts() {
+        return productPricesInPopularProducts.size();
+    }
+
+    public boolean checkProductPricesAreBiggerThenZero() {
+        return productPricesInPopularProducts.stream().allMatch(
+                webElement -> StringUtils.extractPriceValue(webElement.getText()) > 0.0);
+    }
+
+    public PricesDropPage clickOnPricesDrop() {
+        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
+        executor.executeScript("arguments[0].click()", pricesDrop);
+        return new PricesDropPage();
+    }
+
+    public AllProductsPage clickOnAllProducts() {
+        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
+        executor.executeScript("arguments[0].click()", allProducts);
+        return new AllProductsPage();
+    }
+
 }
+

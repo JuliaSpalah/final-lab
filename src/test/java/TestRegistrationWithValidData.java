@@ -7,7 +7,7 @@ import static org.testng.Assert.assertEquals;
 
 public class TestRegistrationWithValidData extends BaseTest {
     @Test
-    public void registrationWithValidData() {
+    public void testRegistrationWithValidData() {
         MainPage mainPage = new MainPage();
         mainPage.switchToDemoShopIFrame();
         SignInPage signInPage = new SignInPage();

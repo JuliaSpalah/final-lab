@@ -8,7 +8,7 @@ import static org.testng.Assert.assertTrue;
 
 public class TestRegistrationWithInvalidData extends BaseTest {
     @Test
-    public void registrationWithInvalidData() {
+    public void testRegistrationWithInvalidData() {
         MainPage mainPage = new MainPage();
         mainPage.switchToDemoShopIFrame();
         SignInPage signInPage = new SignInPage();
