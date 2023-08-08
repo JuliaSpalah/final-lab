@@ -1,6 +1,7 @@
 package org.prestashop;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -78,6 +79,9 @@ public class MainPage extends BasePage {
 
     @FindBy(xpath = "//section[@class='featured-products clearfix']//a[@class='all-product-link float-xs-left float-md-right h4']")
     private WebElement allProducts;
+
+    @FindBy(xpath = "//input[@class='ui-autocomplete-input']")
+    private WebElement searchField;
 
 
     public MainPage() {
@@ -199,6 +203,17 @@ public class MainPage extends BasePage {
         executor.executeScript("arguments[0].click()", allProducts);
         return new AllProductsPage();
     }
+
+    public MainPage setBearToSearchField() {
+        searchField.sendKeys("Bear");
+        return this;
+    }
+
+    public SearchResultPage pressEnter() {
+        searchField.sendKeys(Keys.ENTER);
+        return new SearchResultPage();
+    }
+
 
 }
 
