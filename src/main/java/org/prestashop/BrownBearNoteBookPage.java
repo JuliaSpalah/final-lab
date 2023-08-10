@@ -1,5 +1,6 @@
 package org.prestashop;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -10,7 +11,7 @@ public class BrownBearNoteBookPage extends BasePage {
     private WebElement paperType;
 
     @FindBy(xpath = "//option[@value='25']")
-    private WebElement dottedPaperType;
+    private WebElement dotedPaperTypeInDropDown;
 
     @FindBy(xpath = "//div[@class='input-group bootstrap-touchspin']//input[@type='number']")
     private WebElement quantity;
@@ -20,6 +21,12 @@ public class BrownBearNoteBookPage extends BasePage {
 
     @FindBy(xpath = "//h4[@id='myModalLabel']")
     private WebElement messageProductAddedToCart;
+
+    @FindBy(xpath = "//span[@class='paper type']/strong[text()=' Doted']")
+    private WebElement doted;
+
+    @FindBy(xpath = "//span[@class='product-quantity']/strong[text()='5']")
+    private WebElement orderedQuantity5;
 
     public BrownBearNoteBookPage() {
         PageFactory.initElements(getDriver(), this);
@@ -35,13 +42,18 @@ public class BrownBearNoteBookPage extends BasePage {
         return this;
     }
 
-    public BrownBearNoteBookPage clickOnDotted() {
-        dottedPaperType.click();
+    public BrownBearNoteBookPage clickOnDoted() {
+        dotedPaperTypeInDropDown.click();
         return this;
     }
 
     public BrownBearNoteBookPage clickOnQuantity() {
         quantity.click();
+        return this;
+    }
+
+    public BrownBearNoteBookPage deleteQuantityValue() {
+        quantity.sendKeys(Keys.BACK_SPACE);
         return this;
     }
 
@@ -57,6 +69,14 @@ public class BrownBearNoteBookPage extends BasePage {
 
     public boolean getMessageProductSuccessfullyAddedToCart() {
         return messageProductAddedToCart.isDisplayed();
+    }
+
+    public String getOrderedPaperType() {
+        return doted.getText();
+    }
+
+    public String getOrderedQuantity() {
+        return orderedQuantity5.getText();
     }
 
 }

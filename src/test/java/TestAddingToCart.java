@@ -19,14 +19,19 @@ public class TestAddingToCart extends BaseTest {
                 .clickOnBrownBearNoteBook()
                 .waitSeconds(1)
                 .clickOnPaperType()
-                .clickOnDotted()
+                .clickOnDoted()
                 .clickOnQuantity()
+                .deleteQuantityValue()
                 .setValueToQuantityField()
                 .clickOnAddToCart()
                 .waitSeconds(1);
         boolean actualMessageAfterAddingToCart = brownBearNoteBookPage.getMessageProductSuccessfullyAddedToCart();
         assertTrue(actualMessageAfterAddingToCart, "The message after adding to cart is absent");
 
-        ///завдання 9
+        String actualOrderedPaperType = brownBearNoteBookPage.getOrderedPaperType();
+        assertEquals(actualOrderedPaperType, "Doted", "The paper type is incorrect");
+
+        String actualOrderedQuantity = brownBearNoteBookPage.getOrderedQuantity();
+        assertEquals(actualOrderedQuantity, "5", "The ordered quantity is incorrect");
     }
 }
