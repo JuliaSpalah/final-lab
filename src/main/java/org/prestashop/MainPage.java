@@ -214,6 +214,13 @@ public class MainPage extends BasePage {
         return new SearchResultPage();
     }
 
+    public MainPage setMugToSearchField() {
+        searchField.sendKeys("Mug");
+        return this;
+    }
+
+
+
 
 }
 
