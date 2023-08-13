@@ -39,6 +39,7 @@
             <artifactId>cucumber-java</artifactId>
             <version>7.11.1</version>
         </dependency>
+
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
@@ -51,11 +52,13 @@
             <version>7.7.1</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
             <version>6.14.1</version>
         </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -68,6 +71,7 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>2.0.5</version>
         </dependency>
+
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
@@ -92,7 +96,7 @@
                     <artifactId>allure-maven</artifactId>
                     <version>2.10.0</version>
                     <configuration>
-                        <reportVersion>2.14.0</reportVersion>
+                        <reportVersion>2.10.0</reportVersion>
                         <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
                     </configuration>
                 </plugin>

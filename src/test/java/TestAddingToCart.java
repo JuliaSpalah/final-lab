@@ -3,7 +3,8 @@ import org.prestashop.MainPage;
 import org.prestashop.SearchResultPage;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class TestAddingToCart extends BaseTest {
 
