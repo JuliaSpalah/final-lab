@@ -1,9 +1,11 @@
 package org.prestashop;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.Utils;
+@Slf4j
 
 public class ShippingMethodPage extends BasePage {
 
@@ -17,16 +19,19 @@ public class ShippingMethodPage extends BasePage {
     }
 
     public ShippingMethodPage waitSeconds(long seconds) {
+        log.info("Wait seconds");
         Utils.waitSeconds(seconds);
         return this;
     }
 
     public ShippingMethodPage clickOnMyCarrier() {
+        log.info("Click on My carrier");
         myCarrier.click();
         return this;
     }
 
-    public PaymentPage clickOnContinueButton() {
+    public PaymentPage clickOnContinueButtonOnShippingPage() {
+        log.info("Click on Continue button on Shipping page");
         buttonContinue.click();
         return new PaymentPage();
     }

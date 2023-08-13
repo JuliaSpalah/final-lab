@@ -12,9 +12,9 @@ public class BrowserFactory {
         switch (browser) {
             case CHROME:
                 WebDriverManager.chromedriver().setup();
-                ChromeOptions ops = new ChromeOptions();
-                ops.addArguments("--remote-allow-origins=*");
-                return new ChromeDriver(ops);
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--remote-allow-origins=*", "--incognito");
+                return new ChromeDriver(chromeOptions);
             case SAFARI:
                 WebDriverManager.safaridriver().setup();
                 return new SafariDriver();

@@ -1,5 +1,6 @@
 package org.prestashop;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -11,7 +12,7 @@ import utils.Utils;
 
 import java.util.List;
 
-
+@Slf4j
 public class MainPage extends BasePage {
 
     @FindBy(xpath = "//p[@id='block-newsletter-label']")
@@ -94,132 +95,157 @@ public class MainPage extends BasePage {
     }
 
     public String getTextNearEmailField() {
+        log.info("Get text near email field");
         return textNearEmailField.getText();
     }
 
     public String getTextUnderEmailField() {
+        log.info("Get text under email field");
         return textUnderEmailField.getText();
     }
 
     public String getTextOfSubscribeButton() {
+        log.info("Get text Subscribe button");
         return subscribeButton.getDomProperty("value");
     }
 
     public MainPage clickOnLanguageButton() {
+        log.info("Click on language button");
         languageButton.click();
         return this;
     }
 
     public int getQuantityOfLanguages() {
+        log.info("Get quantity of languages");
         return listOfLanguages.size();
     }
 
     public boolean checkUkrainianLanguagePresence() {
+        log.info("Check ukrainian language presence");
         return listOfLanguages.stream().anyMatch(
                 webElement -> webElement.getText().equals("Українська")
         );
     }
 
     public SignInPage clickOnSignInButton() {
+        log.info("Click on sign in button");
         signInButton.click();
         return new SignInPage();
     }
 
     public String getUserNameNearCart() {
+        log.info("Get user name near cart");
         return nameNearCart.getText();
     }
 
     public MainPage hoverOverClothes() {
+        log.info("Hover over clothes");
         Actions actions = new Actions(getDriver());
         actions.moveToElement(clothes).perform();
         return this;
     }
 
     public String getSubmenuMen() {
+        log.info("Get submenu Men");
         return submenuMen.getText();
     }
 
     public String getSubmenuWomen() {
+        log.info("Get submenu Women");
         return submenuWomen.getText();
     }
 
     public MainPage hoverOverAccessories() {
+        log.info("Hover over Accessories");
         Actions actions = new Actions(getDriver());
         actions.moveToElement(accessories).perform();
         return this;
     }
 
     public String getSubmenuStationery() {
+        log.info("Get submenu Stationery");
         return stationery.getText();
     }
 
     public String getSubmenuHomeAccessories() {
+        log.info("Get Submenu Home Accessories");
         return homeAccessories.getText();
     }
 
     public MainPage hoverOverArts() {
+        log.info("Hover over Arts");
         Actions actions = new Actions(getDriver());
         actions.moveToElement(arts).perform();
         return this;
     }
 
     public boolean isClothesSubmenuShown() {
+        log.info("Is clothes submenu shown");
         return clothesSubmenu.getCssValue("visibility").equals("visible");
     }
 
     public boolean isAccessoriesSubmenuShown() {
+        log.info("Is accessories submenu shown");
         return accessoriesSubmenu.getCssValue("visibility").equals("visible");
     }
 
     public boolean isArtsSubmenuShown() {
+        log.info("Is arts submenu shown");
         return artsSubmenu.getCssValue("visibility").equals("visible");
     }
 
     public int getQuantityInPopularProducts() {
+        log.info("Get quantity in Popular products");
         return productsInPopularProducts.size();
     }
 
     public int getQuantityOfProductNamesInPopularProducts() {
+        log.info("Get quantity of product names in Popular products");
         return productNamesInPopularProducts.size();
     }
 
     public int getPricesQuantityInPopularProducts() {
+        log.info("Get prices quantity in popular products");
         return productPricesInPopularProducts.size();
     }
 
     public boolean checkProductPricesAreBiggerThenZero() {
+        log.info("Check product prices are bigger then zero");
         return productPricesInPopularProducts.stream().allMatch(
                 webElement -> StringUtils.extractPriceValue(webElement.getText()) > 0.0);
     }
 
     public PricesDropPage clickOnPricesDrop() {
+        log.info("Click on prices drop");
         JavascriptExecutor executor = (JavascriptExecutor) getDriver();
         executor.executeScript("arguments[0].click()", pricesDrop);
         return new PricesDropPage();
     }
 
     public AllProductsPage clickOnAllProducts() {
+        log.info("Click on All products");
         JavascriptExecutor executor = (JavascriptExecutor) getDriver();
         executor.executeScript("arguments[0].click()", allProducts);
         return new AllProductsPage();
     }
 
     public MainPage setBearToSearchField() {
+        log.info("Set Bear to search field");
         searchField.sendKeys("Bear");
         return this;
     }
 
     public SearchResultPage pressEnter() {
+        log.info("Press enter");
         searchField.sendKeys(Keys.ENTER);
         return new SearchResultPage();
     }
 
     public MainPage setMugToSearchField() {
+        log.info("Set Mug to search field");
         searchField.sendKeys("Mug");
         return this;
     }
-
-
 
 
 }

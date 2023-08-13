@@ -1,5 +1,6 @@
 package org.prestashop;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -7,8 +8,8 @@ import utils.StringUtils;
 import utils.Utils;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+@Slf4j
 public class ShoppingCartPage extends BasePage {
 
     @FindBy(xpath = "//div[@class='cart-summary-line cart-total']//span[@class='value']")
@@ -25,27 +26,24 @@ public class ShoppingCartPage extends BasePage {
     }
 
     public ShoppingCartPage waitSeconds(long seconds) {
+        log.info("Wait seconds");
         Utils.waitSeconds(seconds);
         return this;
     }
 
-    public List<Double> getProductPrices() {
-        return productPrices.stream()
-                .map(WebElement::getText)
-                .map(StringUtils::extractPriceValue)
-                .collect(Collectors.toList());
-    }
-
     public boolean checkTotalSum() {
+        log.info("Check total sum");
         double sumOfOrderedProducts = productPrices.stream()
                 .map(WebElement::getText)
                 .map(StringUtils::extractPriceValue)
                 .reduce(0.0, Double::sum);
+        sumOfOrderedProducts = Math.round(sumOfOrderedProducts * 100.0) / 100.0;
         double totalSum = StringUtils.extractPriceValue(total.getText());
         return sumOfOrderedProducts == totalSum;
     }
 
     public PersonalInformationPage clickOnProceedToCheckOut() {
+        log.info("Click on Proceed to checkout");
         proceedToCheckout.click();
         return new PersonalInformationPage();
     }

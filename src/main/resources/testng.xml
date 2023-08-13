@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Run all tests" verbose="1">
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+    <test name="Test 1">
+        <classes>
+            <class name="TestSubscribeWithInvalidEmail"/>
+            <class name="TestCheckLanguages"/>
+            <class name="TestRegistrationWithValidData"/>
+            <class name="TestRegistrationWithInvalidData"/>
+            <class name="TestCheckCategories"/>
+            <class name="TestCheckPopularProducts"/>
+            <class name="TestPricesDrop"/>
+            <class name="TestSortingCheck"/>
+            <class name="TestAddingToCart"/>
+            <class name="TestCheckOutEndToEnd"/>
+        </classes>
+    </test>
+</suite>

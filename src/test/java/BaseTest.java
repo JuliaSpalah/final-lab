@@ -1,3 +1,4 @@
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.prestashop.BasePage;
@@ -19,6 +20,7 @@ public class BaseTest {
         driver.get("https://demo.prestashop.com/");
         driver.manage().window().setSize(new Dimension(width, height));
         BasePage.setDriver(driver);
+        PropertyConfigurator.configure("test/java/log4j.properties");
     }
 
     @AfterMethod

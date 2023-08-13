@@ -1,4 +1,3 @@
-import com.google.common.util.concurrent.ClosingFuture;
 import org.prestashop.*;
 import org.testng.annotations.Test;
 
@@ -24,8 +23,8 @@ public class TestCheckOutEndToEnd extends BaseTest {
                 .setBestMugEverToTextField()
                 .clickOnSaveCustomization()
                 .waitSeconds(1)
-                .clearQuantityField()
-                .setValueToQuantityField()
+//                .clearQuantityField()
+//                .setValueToQuantityField()
                 .clickOnAddToCart()
                 .waitSeconds(1)
                 .clickOnContinueShopping()
@@ -52,7 +51,8 @@ public class TestCheckOutEndToEnd extends BaseTest {
                 .setBirthdayToBirthdayField()
                 .clickOnTermsAndConditions()
                 .clickOnDataPrivacy()
-                .clickOnContinueButton()
+                .waitSeconds(1)
+                .clickOnContinueButtonOnPersonalInfoPage()
                 .waitSeconds(1)
                 .setNameOfCompanyToCompanyField()
                 .setAddressToAddressField()
@@ -61,10 +61,11 @@ public class TestCheckOutEndToEnd extends BaseTest {
                 .clickOnSelectCountryDropdown()
                 .selectCountryFromDropdown()
                 .setPhoneNumber()
-                .clickOnContinueButton()
+                .waitSeconds(1)
+                .clickOnContinueButtonOnAddressesPage()
                 .waitSeconds(1)
                 .clickOnMyCarrier()
-                .clickOnContinueButton()
+                .clickOnContinueButtonOnShippingPage()
                 .waitSeconds(1)
                 .selectOptionPayByCheck()
                 .checkIfAmountEqualsToSubtotalAndShipping();
