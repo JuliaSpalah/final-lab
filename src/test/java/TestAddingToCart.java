@@ -22,8 +22,11 @@ public class TestAddingToCart extends BaseTest {
                 .clickOnPaperType()
                 .clickOnDoted()
                 .clickOnQuantity()
+                .waitSeconds(1)
                 .deleteQuantityValue()
+                .waitSeconds(1)
                 .setValueToQuantityField()
+                .waitSeconds(1)
                 .clickOnAddToCart()
                 .waitSeconds(1);
         boolean actualMessageAfterAddingToCart = brownBearNoteBookPage.getMessageProductSuccessfullyAddedToCart();
@@ -34,5 +37,9 @@ public class TestAddingToCart extends BaseTest {
 
         String actualOrderedQuantity = brownBearNoteBookPage.getOrderedQuantity();
         assertEquals(actualOrderedQuantity, "5", "The ordered quantity is incorrect");
+
+        boolean actualTotalOnBrownBearPage = brownBearNoteBookPage.checkIfTotalCorrect();
+        assertTrue(actualTotalOnBrownBearPage, "Total on BearBrownPage is incorrect");
     }
+
 }

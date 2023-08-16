@@ -31,8 +31,9 @@ public class AddressesPage extends BasePage {
     @FindBy(xpath = "//input[@id='field-phone']")
     private WebElement phoneField;
 
-    @FindBy(xpath = "//footer[@class='form-footer clearfix']//button[@class='continue btn btn-primary float-xs-right']")
+    @FindBy(xpath = "//button[@name='confirm-addresses']")
     private WebElement buttonContinueAddresses;
+   // @FindBy(xpath = "//footer[@class='form-footer clearfix']//button[@class='continue btn btn-primary float-xs-right']")
 
     public AddressesPage() {
         PageFactory.initElements(getDriver(), this);

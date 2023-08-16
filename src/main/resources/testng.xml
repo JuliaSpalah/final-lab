@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Run all tests" verbose="1">
     <listeners>
-        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+        <listener class-name="org.prestashop.listeners.TestListeners"/>
     </listeners>
     <test name="Test 1">
         <classes>

@@ -5,6 +5,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.StringUtils;
 import utils.Utils;
 
 @Slf4j
@@ -29,6 +30,15 @@ public class BrownBearNoteBookPage extends BasePage {
 
     @FindBy(xpath = "//span[@class='product-quantity']/strong[text()='5']")
     private WebElement orderedQuantity5;
+
+    @FindBy(xpath = "//span[@class='subtotal value']")
+    private WebElement totalOnBrownBearPage;
+
+    @FindBy(xpath = "//span[@class='subtotal value']")
+    private WebElement subtotalOnBrownBearPage;
+
+    @FindBy(xpath = "//span[@class='shipping value']")
+    private WebElement shippingOnBrownBearPage;
 
     public BrownBearNoteBookPage() {
         PageFactory.initElements(getDriver(), this);
@@ -89,6 +99,15 @@ public class BrownBearNoteBookPage extends BasePage {
     public String getOrderedQuantity() {
         log.info("Get ordered quantity");
         return orderedQuantity5.getText();
+    }
+
+    public boolean checkIfTotalCorrect(){
+        log.info("Check if Total calculated correct");
+        double totalValue = StringUtils.extractPriceValue(totalOnBrownBearPage.getText());
+        double subtotalValue = StringUtils.extractPriceValue(subtotalOnBrownBearPage.getText());
+        double shippingValue = StringUtils.extractPriceValue(shippingOnBrownBearPage.getText());
+        double sumOfSubtotalAndShipping = subtotalValue+shippingValue;
+        return sumOfSubtotalAndShipping == totalValue;
     }
 
 }

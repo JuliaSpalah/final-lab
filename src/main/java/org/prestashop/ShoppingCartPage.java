@@ -36,8 +36,7 @@ public class ShoppingCartPage extends BasePage {
         double sumOfOrderedProducts = productPrices.stream()
                 .map(WebElement::getText)
                 .map(StringUtils::extractPriceValue)
-                .reduce(0.0, Double::sum);
-        sumOfOrderedProducts = Math.round(sumOfOrderedProducts * 100.0) / 100.0;
+                .reduce(0.0, Utils::sumPrice);
         double totalSum = StringUtils.extractPriceValue(total.getText());
         return sumOfOrderedProducts == totalSum;
     }

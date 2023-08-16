@@ -10,4 +10,12 @@ public class Utils {
             System.out.println("Can`t wait for " + seconds + " seconds");
         }
     }
+
+    public static double sanitizePrice(double price) {
+        return Math.round(price * 100.0d) / 100.0d;
+    }
+
+    public static double sumPrice(double a, double b) {
+        return sanitizePrice(a + b);
+    }
 }

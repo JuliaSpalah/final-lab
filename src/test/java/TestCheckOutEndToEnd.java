@@ -1,7 +1,7 @@
 import org.prestashop.*;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertTrue;
 
 public class TestCheckOutEndToEnd extends BaseTest {
     @Test
@@ -14,6 +14,8 @@ public class TestCheckOutEndToEnd extends BaseTest {
         ShoppingCartPage shoppingCartPage = new ShoppingCartPage();
         PersonalInformationPage personalInformationPage = new PersonalInformationPage();
         AddressesPage addressesPage = new AddressesPage();
+        PaymentPage paymentPage = new PaymentPage();
+        OrderConfirmedPage orderConfirmedPage = new OrderConfirmedPage();
 
         boolean actualTotal = mainPage.setMugToSearchField()
                 .pressEnter()
@@ -71,6 +73,16 @@ public class TestCheckOutEndToEnd extends BaseTest {
                 .checkIfAmountEqualsToSubtotalAndShipping();
 
         assertTrue(actualAmountOnPaymentPage, "The amount is not equal to subtotal and shipping");
+
+        String actualOrderConfirmation = paymentPage.clickOnIAgree()
+                .clickOnPlaceOrderButton()
+                .getOrderConfirmationMessage();
+
+        assertTrue(actualOrderConfirmation.toLowerCase().contains("your order is confirmed"),
+                "Order confirmation doesn't contain 'your order is confirmed' message");
+
+        boolean actualTotalOnConfirmation = orderConfirmedPage.checkIfTotalCorrect();
+        assertTrue(actualTotalOnConfirmation, "The total on confirmation is incorrect");
 
 
     }
