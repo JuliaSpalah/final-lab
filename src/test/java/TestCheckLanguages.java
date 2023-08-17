@@ -11,7 +11,7 @@ public class TestCheckLanguages extends BaseTest {
         mainPage.switchToDemoShopIFrame();
         int actualQuantityOfLanguages = mainPage.clickOnLanguageButton().getQuantityOfLanguages();
 
-        assertEquals(actualQuantityOfLanguages, 44, "Incorrect quantity of Languages");
+        assertEquals(actualQuantityOfLanguages, 46, "Incorrect quantity of Languages");
 
         boolean actualUkrainianLanguagePresence = mainPage.checkUkrainianLanguagePresence();
         assertTrue(actualUkrainianLanguagePresence, "Ukrainian language is absent in dropdown");
